@@ -2,7 +2,7 @@
 
 layout: page_v2
 title: Custom or No mediation
-description: Integration of Prebid SDK withou primaty Ad Server
+description: Integration of Prebid SDK without primary Ad Server
 sidebarType: 2
 
 ---
@@ -105,10 +105,10 @@ Pay attention that the `loadAd()` should be called on the main thread.
 #### Step 1: Create Ad View
 {:.no_toc}
 
-Initialize the `BannerAdView` with properties:
+Initialize the `BannerView` object with the following properties:
 
-* `configId`
-* `size`
+* `configId` - this is the ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) generated on your Prebid server.
+* `adSize` - this is the size of the ad unit which will be used in the bid request and returned to your application.
 
 #### Step 2: Load the Ad
 {:.no_toc}
@@ -161,14 +161,14 @@ interstitialAdUnit = InterstitialAdUnit(
 #### Step 1: Create an Ad Unit
 {:.no_toc}
 
-Initialize the `InterstitialAdUnit` with properties:
+Initialize the `InterstitialAdUnit` object with these properties:
 
-* `configId`
-* `minSizePercentage`
+* `configId` - this is the ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) generated on your Prebid server.
+* `minSizePercentage` - this specifies the minimum width and height as a percentage of the devices screen size.
 
 You can also assign the listener to process ad events.
 
-> **NOTE:** the `minSizePercentage` - plays an important role in the bidding process for display ads. If the provided space is not enough demand partners won't respond with bids.
+> **NOTE:** the `minSizePercentage` - plays an important role in the bidding process for display ads. If the provided space is not enough demand partners won't respond with bids. Make sure you provide ample space.
 
 #### Step 2: Load the Ad
 {:.no_toc}
@@ -212,9 +212,9 @@ Pay attention that the `loadAd()` should be called on the main thread.
 #### Step 1: Create a Rewarded Ad Unit
 {:.no_toc}
 
-Create the `RewardedAdUnit` object with parameters:
+Create the `RewardedAdUnit` object with the parameters:
 
-* `adUnitId` - an ID of Stored Impression on the Prebid server.
+* `adUnitId` - this is the ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) generated on your Prebid server.
 
 #### Step 2: Load the Ad
 {:.no_toc}
@@ -227,7 +227,23 @@ Call the `loadAd()` to make a bid request.
 Wait until the ad is loaded and present it to the user in any suitable time.
 
 ``` kotlin
-override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
-//Ad is ready for display
-}
+// Make an ad request 
+    RewardedAd.load(activity, adUnitId, request, object : RewardedAdLoadCallback() {
+        override fun onAdLoaded(ad: RewardedAd) {
+            Log.d(TAG, "Ad was loaded.")
+            rewardedAd = ad
+
+            // 6. Display an ad 
+            rewardedAd?.show(activity) { rewardItem ->
+                val rewardAmount = rewardItem.amount
+                val rewardType = rewardItem.type
+                Log.d(TAG, "User earned the reward ($rewardAmount, $rewardType)")
+            }
+        }
+
+        override fun onAdFailedToLoad(adError: LoadAdError) {
+            Log.e(TAG, adError.message)
+            rewardedAd = null
+        }
+    })
 ```

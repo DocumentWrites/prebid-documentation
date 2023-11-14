@@ -98,11 +98,11 @@ banner.loadAd()
 #### Step 1: Create Ad View
 {:.no_toc}
 
-Initialize the `BannerAdView` with properties:
+Initialize the `BannerView` object with these properties:
 
-* `frame`
-* `configID`
-* `size`
+* `frame` - the frame rectangle for the view.
+* `configID` - this is the ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) generated on your Prebid server.
+* `adSize` - this is the size of the ad unit which will be used in the bid request and returned to your application.
 
 #### Step 2: Load the Ad
 {:.no_toc}
@@ -163,10 +163,10 @@ adUnit?.adFormats = [.banner]
 
 Initialize the Interstitial Ad Unit with properties:
 
-* `configID`
-* `minSizePercentage`
+* `configID` - this is the ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) generated on your Prebid server.
+* `minSizePercentage` - this specifies the minimum width and height as a percentage of the devices screen size.
 
-> **NOTE:** minSizePercentage - plays an important role in a bidding process for banner ads. If provided space is not enough demand partners won't respond with the bids.
+> **NOTE:** minSizePercentage - plays an important role in a bidding process for banner ads. If provided space is not enough demand partners won't respond with the bids. Make sure you provide ample space.
 
 #### Step 2: Load the Ad
 {:.no_toc}
@@ -209,9 +209,9 @@ if rewardedAd.isReady {
 #### Step 1: Create Rewarded Ad Unit
 {:.no_toc}
 
-Create the `RewardedAdUnit` object with parameter:
+Create the `RewardedAdUnit` object with the parameter:
 
-* `configID`
+* `configID` - this is the ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) generated on your Prebid server.
 
 #### Step 2: Load the Ad
 {:.no_toc}
