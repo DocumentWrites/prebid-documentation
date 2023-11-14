@@ -107,8 +107,8 @@ Pay attention that the `loadAd()` should be called on the main thread.
 
 Initialize the `BannerAdView` with properties:
 
-* `configId` - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
-* `size` - the size of the ad unit which will be used in the bid request.
+* `configId`
+* `size`
 
 #### Step 2: Load the Ad
 {:.no_toc}
@@ -163,8 +163,8 @@ interstitialAdUnit = InterstitialAdUnit(
 
 Initialize the `InterstitialAdUnit` with properties:
 
-* `configId` - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
-* `minSizePercentage` - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
+* `configId`
+* `minSizePercentage`
 
 You can also assign the listener to process ad events.
 
