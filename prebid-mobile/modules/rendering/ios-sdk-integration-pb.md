@@ -100,9 +100,9 @@ banner.loadAd()
 
 Initialize the `BannerAdView` with properties:
 
-* `frame` - the frame rectangle for the view
-* `configID` - an ID of the Stored Impression on the Prebid Server
-* `size` - the size of the ad unit which will be used in the bid request.
+* `frame`
+* `configID`
+* `size`
 
 #### Step 2: Load the Ad
 {:.no_toc}
@@ -163,8 +163,8 @@ adUnit?.adFormats = [.banner]
 
 Initialize the Interstitial Ad Unit with properties:
 
-* `configID` - an ID of Stored Impression on the Prebid Server
-* `minSizePercentage` - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
+* `configID`
+* `minSizePercentage`
 
 > **NOTE:** minSizePercentage - plays an important role in a bidding process for banner ads. If provided space is not enough demand partners won't respond with the bids.
 
@@ -211,7 +211,7 @@ if rewardedAd.isReady {
 
 Create the `RewardedAdUnit` object with parameter:
 
-* `configID` - an ID of Stored Impression on the Prebid Server
+* `configID`
 
 #### Step 2: Load the Ad
 {:.no_toc}
