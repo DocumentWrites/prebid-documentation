@@ -2,15 +2,27 @@
 
 layout: page_v2
 title: Custom or No mediation
-description: Integration of Prebid SDK without primary Ad Server
+description: How to integrate the Prebid SDK without a primary Ad Server
 sidebarType: 2
 
 ---
 
+
+
 # Custom Bidding Integration
 {:.no_toc}
 
-You can use Prebid SDK to monetize your app with a custom ad server or even without it. Use the `Transport API` to obtain the targeting keywords for following usage with the custom ad server. Use the `Rendering API` to display the winning bid without primary ad server and its SDK.
+## Before you start
+
+Before implementing the instructions in this guide, you need to ensure that you have correctly initialized the Prebid Mobile SDK in your app. You can do so using the code snippet below:
+
+```
+Prebid.init(getApplicationContext(), adUnits, "INSERT-ACCOUNT-ID-HERE", Prebid.AdServer.DFP, Prebid.Host.RUBICON);
+```
+
+The `accountId` you use to initialize the Prebid Mobile SDK is the unique identifier your Prebid Server provider assigned to you. This allows you to change bidders and parameters without having to update your application code.
+
+You can use Prebid SDK to monetize your app with a custom ad server or even without it. Use the `Transport API` to obtain the targeting keywords for following usage with the custom ad server. Use the `Rendering API` to display the winning bid without the primary ad server and its SDK.
 
 * TOC
 {:toc}
@@ -214,7 +226,7 @@ Pay attention that the `loadAd()` should be called on the main thread.
 
 Create the `RewardedAdUnit` object with the parameters:
 
-* `adUnitId` - this is the ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) generated on your Prebid server.
+* `adUnitId` - this is an arbitrary descriptor for the ad. You might use it as a descriptive name in targeting or for reporting.  For example you might name it "account details screen ad" or "home page ad name."
 
 #### Step 2: Load the Ad
 {:.no_toc}
